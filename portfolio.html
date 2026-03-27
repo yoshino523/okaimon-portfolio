@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>おかいもん - ポートフォリオ</title>
+  <style>
+    :root {
+      --primary: #4caf50;
+      --primary-dark: #388e3c;
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --text: #212121;
+      --text-secondary: #757575;
+      --border: #e0e0e0;
+      --accent: #ff9800;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      padding: 80px 24px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: rgba(255,255,255,0.2);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      backdrop-filter: blur(4px);
+    }
+
+    /* ===== Section ===== */
+    section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      color: var(--primary-dark);
+      border-bottom: 3px solid var(--primary);
+      display: inline-block;
+      padding-bottom: 4px;
+    }
+
+    section h3 {
+      font-size: 1.2rem;
+      margin: 24px 0 8px;
+      color: var(--text);
+    }
+
+    section > p {
+      margin: 12px 0;
+      color: var(--text-secondary);
+    }
+
+    /* ===== Screenshot Placeholder ===== */
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    .screenshot-slot {
+      background: var(--surface);
+      border: 2px dashed var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .screenshot-slot img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .screenshot-slot .caption {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .screenshot-slot .note {
+      font-size: 0.75rem;
+      color: #999;
+      margin-top: 4px;
+    }
+
+    /* ===== Tech Stack ===== */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 24px 0;
+    }
+
+    .tech-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .tech-card h4 {
+      font-size: 0.85rem;
+      color: var(--primary-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .tech-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .tech-card li {
+      padding: 4px 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .tech-card li strong {
+      color: var(--text);
+    }
+
+    /* ===== Architecture ===== */
+    .arch-diagram {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+      overflow-x: auto;
+    }
+
+    .arch-diagram pre {
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    /* ===== Feature Cards ===== */
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 24px 0;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .feature-card h4 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .feature-card .tag {
+      display: inline-block;
+      background: #e8f5e9;
+      color: var(--primary-dark);
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-top: 8px;
+    }
+
+    /* ===== Challenge ===== */
+    .challenge {
+      background: var(--surface);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin: 16px 0;
+    }
+
+    .challenge h4 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .challenge .problem {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .challenge .solution {
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+
+    .challenge .solution strong {
+      color: var(--primary-dark);
+    }
+
+    /* ===== Data Model ===== */
+    .data-model {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .data-model pre {
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    /* ===== Stats ===== */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .stat-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-box .number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .stat-box .label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* ===== Process ===== */
+    .process-steps {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      margin: 24px 0;
+      padding-bottom: 8px;
+    }
+
+    .process-step {
+      flex: 0 0 160px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      position: relative;
+    }
+
+    .process-step::after {
+      content: '→';
+      position: absolute;
+      right: -14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    .process-step:last-child::after {
+      display: none;
+    }
+
+    .process-step .step-num {
+      font-size: 0.7rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .process-step .step-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin: 4px 0;
+    }
+
+    .process-step .step-desc {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ===== Print / PDF ===== */
+    @media print {
+      /* 背景色・背景画像をPDFに出力する */
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+      body { font-size: 9pt; line-height: 1.5; }
+
+      /* 全体をコンパクトに */
+      .hero { padding: 28px 20px; }
+      .hero h1 { font-size: 2rem; margin-bottom: 10px; }
+      .hero p { font-size: 1rem; margin-bottom: 16px; }
+      .badge { padding: 4px 10px; font-size: 0.75rem; }
+
+      section { padding: 16px 20px; }
+      section h2 { font-size: 1.3rem; margin-bottom: 8px; }
+      section h3 { font-size: 1rem; margin: 10px 0 6px; }
+
+      /* 概要 */
+      .stats-section { padding: 12px 20px; }
+      .stats-row { gap: 8px; margin: 12px 0; }
+      .stat-box { padding: 10px; }
+      .stat-box .number { font-size: 1.4rem; }
+      .stat-box .label { font-size: 0.7rem; }
+
+      /* スクショ: 3列にして1ページあたりの枚数を増やす */
+      .screenshot-grid { gap: 10px; margin: 12px 0; grid-template-columns: repeat(3, 1fr); }
+      .screenshot-slot { padding: 6px; }
+      .screenshot-slot img { max-height: 260px; object-fit: contain; }
+      .screenshot-slot .caption { font-size: 0.7rem; }
+      .screenshot-slot .note { font-size: 0.6rem; }
+
+      /* カード類 */
+      .tech-grid { gap: 8px; margin: 8px 0; grid-template-columns: repeat(3, 1fr); }
+      .feature-list { gap: 8px; margin: 8px 0; }
+      .tech-card { padding: 8px; }
+      .feature-card { padding: 10px; }
+      .tech-card h4 { font-size: 0.65rem; margin-bottom: 2px; }
+      .tech-card li { font-size: 0.7rem; padding: 0; line-height: 1.4; }
+      .feature-card h4 { font-size: 0.85rem; margin-bottom: 3px; }
+      .feature-card p { font-size: 0.7rem; line-height: 1.4; }
+      .feature-card .tag { font-size: 0.55rem; padding: 1px 6px; }
+
+      /* チャレンジ: 1ページにゆとりを持って収める */
+      .challenge { padding: 12px 16px; margin: 8px 0; }
+      .challenge h4 { font-size: 0.9rem; margin-bottom: 3px; }
+      .challenge .problem { font-size: 0.75rem; margin-bottom: 5px; }
+      .challenge .solution { font-size: 0.75rem; }
+
+      /* アーキテクチャ図: 構成+データモデルを1ページに収める */
+      .arch-diagram { padding: 10px; margin: 8px 0; }
+      .arch-diagram pre { font-size: 0.6rem; line-height: 1.3; }
+      .data-model { padding: 10px; margin: 8px 0; }
+      .data-model pre { font-size: 0.6rem; line-height: 1.3; }
+
+      /* 開発プロセス: スクロールバーを消してwrap */
+      .process-steps { gap: 8px; margin: 10px 0; overflow: visible; flex-wrap: wrap; justify-content: center; }
+      .process-step { padding: 10px; flex: 0 0 auto; width: 120px; }
+
+      /* セクション間で改ページ */
+      .stats-section { break-after: page; }
+      .screenshots-section { break-after: page; }
+      .techstack-section { break-before: page; }
+      .challenge-section { break-before: page; }
+      .process-section { break-before: page; }
+
+      /* カードが途中で切れない */
+      .screenshot-slot,
+      .tech-card,
+      .feature-card,
+      .challenge,
+      .stat-box,
+      .process-step,
+      .data-model,
+      .arch-diagram { break-inside: avoid; }
+
+      /* 見出し直後で改ページしない */
+      h2, h3 { break-after: avoid; }
+
+      footer { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== Hero ==================== -->
+  <header class="hero">
+    <h1>おかいもん</h1>
+    <p>家族でリアルタイムに共有できる買い物リストPWA</p>
+    <div class="hero-badges">
+      <span class="badge">React 19 + TypeScript</span>
+      <span class="badge">Firebase (Firestore / Functions / Hosting)</span>
+      <span class="badge">PWA (オフライン対応)</span>
+      <span class="badge">運用コスト 0円</span>
+    </div>
+  </header>
+
+  <!-- ==================== 規模感（Hero直下） ==================== -->
+  <section class="stats-section">
+    <h2>プロジェクト概要</h2>
+    <p style="color:#757575; margin-bottom:20px; font-size:0.95rem;">
+      家族で使っていた買い物リストアプリが使いづらくなったため、<br>
+      自分たちで好きにカスタマイズできるPWAアプリを個人開発。2025年～継続中。
+    </p>
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="number">v1.4</div>
+        <div class="label">現行バージョン</div>
+      </div>
+      <div class="stat-box">
+        <div class="number">14</div>
+        <div class="label">開発フェーズ</div>
+      </div>
+      <div class="stat-box">
+        <div class="number">27</div>
+        <div class="label">機能仕様書</div>
+      </div>
+      <div class="stat-box">
+        <div class="number">11</div>
+        <div class="label">設計書</div>
+      </div>
+      <div class="stat-box">
+        <div class="number">~60</div>
+        <div class="label">ファイル数 (src/)</div>
+      </div>
+      <div class="stat-box">
+        <div class="number">0円</div>
+        <div class="label">月額運用コスト</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 画面紹介 ==================== -->
+  <section class="screenshots-section">
+    <h2>画面紹介</h2>
+    <p>モバイルファースト設計のPWA。ホーム画面に追加すればネイティブアプリと同じ体験。</p>
+
+    <div class="screenshot-grid">
+      <div class="screenshot-slot">
+        <img src="images/01_home.png" alt="ホーム画面">
+        <div class="caption">ホーム画面（共有タブ）</div>
+        <div class="note">グループで共有するリスト一覧。左右スワイプで個人タブに切替。</div>
+      </div>
+
+      <div class="screenshot-slot">
+        <img src="images/10_personal.png" alt="個人タブ">
+        <div class="caption">ホーム画面（個人タブ）</div>
+        <div class="note">自分だけのリスト。共有タブと独立して管理。</div>
+      </div>
+
+      <div class="screenshot-slot">
+        <img src="images/02_list.png" alt="リスト詳細">
+        <div class="caption">リスト詳細</div>
+        <div class="note">アイテム一覧。カテゴリ別の色分け、チェック/スワイプ削除。</div>
+      </div>
+
+      <div class="screenshot-slot">
+        <img src="images/03_item_detail.png" alt="アイテム詳細">
+        <div class="caption">アイテム詳細</div>
+        <div class="note">数量・単位・価格・メモ・URL・カテゴリ・リマインダーを設定。</div>
+      </div>
+
+      <div class="screenshot-slot">
+        <img src="images/04_wallpaper.png" alt="壁紙設定">
+        <div class="caption">壁紙設定画面</div>
+        <div class="note">プリセット or カスタム画像から選択。</div>
+      </div>
+
+      <div class="screenshot-slot">
+        <img src="images/11_wallpaper_applied.png" alt="壁紙適用後">
+        <div class="caption">壁紙適用後</div>
+        <div class="note">text-shadow + text-strokeでどんな背景でもテキスト視認性を確保。</div>
+      </div>
+    </div>
+
+    <h3>操作系</h3>
+
+    <div class="screenshot-grid">
+      <div class="screenshot-slot">
+        <img src="images/05_swipe.png" alt="スワイプ削除">
+        <div class="caption">スワイプ削除</div>
+        <div class="note">左スワイプで削除ボタン表示。誤削除防止の2段階UX。</div>
+      </div>
+
+      <div class="screenshot-slot">
+        <img src="images/06_drag.png" alt="ドラッグ並び替え">
+        <div class="caption">ドラッグ並び替え</div>
+        <div class="note">長押しでドラッグ。浮動小数点ソートでDB書き込みコスト最小化。</div>
+      </div>
+
+      <div class="screenshot-slot">
+        <img src="images/09_notification.png" alt="通知設定">
+        <div class="caption">通知設定</div>
+        <div class="note">アイテム追加通知ON/OFF、通知不可時間帯の設定。</div>
+      </div>
+
+      <div class="screenshot-slot">
+        <img src="images/07_fab_home.png" alt="FABメニュー（ホーム）">
+        <div class="caption">FABメニュー（ホーム）</div>
+        <div class="note">リスト作成・並び替え・選択削除。＋ボタンに近い順にポジティブ操作。</div>
+      </div>
+
+      <div class="screenshot-slot">
+        <img src="images/08_fab_list.png" alt="FABメニュー（リスト内）">
+        <div class="caption">FABメニュー（リスト内）</div>
+        <div class="note">アイテム追加・並び替え・一括削除。破壊的操作は最上部に配置。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== システム構成 ==================== -->
+  <section>
+    <h2>システム構成</h2>
+
+    <div class="arch-diagram">
+      <pre>
+  ┌───────────────────────────────────────────────┐
+  │          クライアント（PWA / React）              │
+  │  Service Worker + IndexedDB (オフライン対応)      │
+  └──────┬────────────────────────────┬─────────────┘
+         │ onSnapshot()               │ Web Push
+         │ (リアルタイム同期)            │
+         ▼                            ▼
+  ┌──────────────┐           ┌──────────────────┐
+  │  Firestore    │           │ Cloud Functions   │
+  │              │           │                  │
+  │ users/       │  trigger  │ onItemCreate     │
+  │ groups/      │ ────────→ │  → まとめ通知      │
+  │ lists/       │           │ onReminderSet    │
+  │ items/       │           │  → Cloud Tasks    │
+  │              │           │ onReminderFire   │
+  │ Security     │           │  → Push通知送信   │
+  │ Rules        │           └──────────────────┘
+  │ (Custom      │                    │
+  │  Claims)     │                    ▼
+  └──────────────┘           ┌──────────────────┐
+                             │   Cloud Tasks     │
+                             │  リマインダー予約   │
+                             └──────────────────┘
+
+  ┌───────────────────────────────────────────────┐
+  │            CI/CD (GitHub Actions)               │
+  │  develop → STG自動デプロイ                       │
+  │  main    → PROD自動デプロイ                      │
+  │  PR      → version-check (自動検証)              │
+  └───────────────────────────────────────────────┘</pre>
+    </div>
+
+    <h3>データモデル</h3>
+
+    <div class="data-model">
+      <pre>
+  allowedUsers/{email}              招待制ホワイトリスト
+  users/{uid}                       ユーザー情報
+    ├─ settings/preferences         設定 (テーマ, 通知, etc.)
+    ├─ settings/wallpaperData       カスタム壁紙 (Base64)
+    ├─ devices/{deviceId}           Push通知トークン
+    ├─ itemStats/{statId}           利用統計 (サジェスト用)
+    └─ lists/{listId}/items/{id}    個人リスト → アイテム
+
+  groups/{groupId}                  グループ情報
+    └─ lists/{listId}/items/{id}    共有リスト → アイテム</pre>
+    </div>
+  </section>
+
+  <!-- ==================== 技術スタック ==================== -->
+  <section class="techstack-section">
+    <h2>技術スタック</h2>
+
+    <div class="tech-grid">
+      <div class="tech-card">
+        <h4>Frontend</h4>
+        <ul>
+          <li><strong>React 19</strong> + TypeScript 5.9</li>
+          <li><strong>MUI 7</strong> (Material UI)</li>
+          <li><strong>Vite 8</strong> + vite-plugin-pwa</li>
+          <li><strong>React Router 7</strong></li>
+          <li><strong>@dnd-kit</strong> (D&D)</li>
+          <li><strong>Emotion</strong> (CSS-in-JS)</li>
+        </ul>
+      </div>
+
+      <div class="tech-card">
+        <h4>Backend (BaaS)</h4>
+        <ul>
+          <li><strong>Firebase Auth</strong> (Google OAuth)</li>
+          <li><strong>Cloud Firestore</strong> (NoSQL)</li>
+          <li><strong>Cloud Functions</strong> (Node.js 22)</li>
+          <li><strong>Cloud Tasks</strong> (リマインダー)</li>
+          <li><strong>Firebase Hosting</strong> (CDN)</li>
+        </ul>
+      </div>
+
+      <div class="tech-card">
+        <h4>Infrastructure</h4>
+        <ul>
+          <li><strong>GitHub Actions</strong> (CI/CD)</li>
+          <li><strong>STG / PROD</strong> 2環境自動デプロイ</li>
+          <li><strong>Web Push API</strong> (通知)</li>
+          <li><strong>Service Worker</strong> (オフライン)</li>
+          <li><strong>husky</strong> (pre-push tsc -b)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 主要機能 ==================== -->
+  <section>
+    <h2>主要機能</h2>
+
+    <div class="feature-list">
+      <div class="feature-card">
+        <h4>リアルタイム同期</h4>
+        <p>Firestore onSnapshot でリスナー設定。家族の誰かがアイテムを追加すると全端末に即反映。Firestore Persistenceでオフライン時もローカル操作可能、復帰時に自動同期。</p>
+        <span class="tag">Firestore</span>
+        <span class="tag">onSnapshot</span>
+      </div>
+
+      <div class="feature-card">
+        <h4>スワイプ2段階削除</h4>
+        <p>1回目スワイプでチェック済み（灰色化）、2回目で削除確定。誤削除防止のUX設計。useSwipeToReveal カスタムhookで実装。</p>
+        <span class="tag">Custom Hook</span>
+        <span class="tag">Touch Events</span>
+      </div>
+
+      <div class="feature-card">
+        <h4>ドラッグ&ドロップ並び替え</h4>
+        <p>@dnd-kitで実装。浮動小数点ソート方式 — 並び替え時は移動アイテムの sortOrder を前後の中間値に設定 → 1 writeで完了（N件の連番振り直し不要）。</p>
+        <span class="tag">@dnd-kit</span>
+        <span class="tag">コスト最適化</span>
+      </div>
+
+      <div class="feature-card">
+        <h4>プッシュ通知 + リマインダー</h4>
+        <p>アイテム追加から5分間分をまとめて1通知に集約（Cloud Functions制御）。リマインダーはCloud Tasksで指定時刻にサーバー関数を起動 → プッシュ通知送信。</p>
+        <span class="tag">Cloud Functions</span>
+        <span class="tag">Cloud Tasks</span>
+      </div>
+
+      <div class="feature-card">
+        <h4>認証 + PINロック</h4>
+        <p>Firebase Auth (Google OAuth) + Custom ClaimsでJWTにグループ情報埋め込み。Web Credentials APIによる生体認証ロック対応。</p>
+        <span class="tag">Custom Claims</span>
+        <span class="tag">Web Credentials</span>
+      </div>
+
+      <div class="feature-card">
+        <h4>壁紙・テーマカスタマイズ</h4>
+        <p>プリセット壁紙 + カスタム画像アップロード（トリミング対応）。text-shadow + text-strokeの組み合わせで、どんな背景でもテキスト視認性を確保。</p>
+        <span class="tag">react-easy-crop</span>
+        <span class="tag">CSS</span>
+      </div>
+
+      <div class="feature-card">
+        <h4>サジェスト</h4>
+        <p>itemStats サブコレクションにアイテムの使用回数を記録。入力時に過去の使用頻度順でサジェスト表示。</p>
+        <span class="tag">統計ベース</span>
+      </div>
+
+      <div class="feature-card">
+        <h4>招待制グループ</h4>
+        <p>allowedUsers コレクションによるホワイトリスト制御。招待コード共有でグループ参加。Firestoreルールでグループメンバーの読み書きを制限。</p>
+        <span class="tag">Firestore Rules</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 技術的チャレンジ ==================== -->
+  <section class="challenge-section">
+    <h2>技術的チャレンジ</h2>
+
+    <div class="challenge">
+      <h4>通知のまとめ送信</h4>
+      <p class="problem">課題: 買い物リストは短時間に複数アイテムを連続追加する → アイテムごとに通知すると大量通知になる</p>
+      <p class="solution"><strong>解決:</strong> Cloud Functions のトリガーで5分間の「まとめ待ち」を実装。最初のアイテム追加から5分後に、その間の追加分をまとめて1通知で送信。Cloud Tasksのスケジューリングを活用。</p>
+    </div>
+
+    <div class="challenge">
+      <h4>ドラッグ並び替えの書き込みコスト最小化</h4>
+      <p class="problem">課題: Firestoreは書き込み回数で課金 → 並び替えでN件全部書き直すとコスト増</p>
+      <p class="solution"><strong>解決:</strong> 浮動小数点ソート方式を採用。並び替え時は移動アイテムの sortOrder を前後の中間値に設定するだけ → 1 write で完了。連番方式と比較してN-1回の書き込みを削減。</p>
+    </div>
+
+    <div class="challenge">
+      <h4>リマインダーの実行基盤（コスト0円）</h4>
+      <p class="problem">課題: 「明日の朝8時に通知」を実現するには、サーバー側で指定時刻に処理を起動する必要がある</p>
+      <p class="solution"><strong>解決:</strong> Cloud Tasksでスケジュール登録 → 指定時刻にCloud Functionsを呼び出し → Web Push APIで通知送信。全てFirebase Blazeプランの無料枠内で実現。</p>
+    </div>
+
+    <div class="challenge">
+      <h4>オフライン対応とリアルタイム同期の両立</h4>
+      <p class="problem">課題: PWAとしてオフラインでも動作しつつ、オンライン時はリアルタイム同期したい</p>
+      <p class="solution"><strong>解決:</strong> Firestore Persistenceを有効化。オフライン時はIndexedDBのローカルキャッシュで操作、ネットワーク復帰時にFirestoreが自動で差分同期。forceOwnership: true でタブ間のロック残り対策も実装。</p>
+    </div>
+
+    <div class="challenge">
+      <h4>壁紙設定時のテキスト視認性</h4>
+      <p class="problem">課題: ユーザーが自由に壁紙を設定できる → 明るくても暗くても読めるようにする必要がある</p>
+      <p class="solution"><strong>解決:</strong> text-shadow（ぼかし影）+ text-stroke（縁取り）の組み合わせで、どんな背景色でも視認性を確保。白背景用のプリセットも追加。</p>
+    </div>
+
+    <div class="challenge">
+      <h4>運用コスト0円の維持</h4>
+      <p class="problem">課題: 家族向けアプリなのでランニングコストをかけたくない</p>
+      <p class="solution"><strong>解決:</strong> Firebase Blazeプランの無料枠内に収まる設計。まとめ通知でサーバー関数の呼び出し回数を削減、浮動小数点ソートでDB書き込みを削減、コスト監視アラートで無料枠超過を防止。</p>
+    </div>
+  </section>
+
+  <!-- ==================== 開発プロセス ==================== -->
+  <section class="process-section">
+    <h2>開発プロセス</h2>
+
+    <h3>仕様書駆動開発</h3>
+    <p>全ての機能追加・変更をチケット番号付き仕様書（Markdown）で管理。累計27件の仕様書 + 11件の設計書。</p>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">STEP 1</div>
+        <div class="step-title">方針承認</div>
+        <div class="step-desc">設計方針の合意</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">STEP 2</div>
+        <div class="step-title">仕様書作成</div>
+        <div class="step-desc">Markdown仕様書</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">STEP 3</div>
+        <div class="step-title">仕様書確認</div>
+        <div class="step-desc">レビュー・承認</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">STEP 4</div>
+        <div class="step-title">実装</div>
+        <div class="step-desc">コーディング</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">STEP 5</div>
+        <div class="step-title">デプロイ</div>
+        <div class="step-desc">CI/CD自動デプロイ</div>
+      </div>
+    </div>
+
+    <h3>CI/CD</h3>
+
+    <div class="tech-grid">
+      <div class="tech-card">
+        <h4>自動デプロイ</h4>
+        <ul>
+          <li><strong>develop push</strong> → STG環境に自動デプロイ</li>
+          <li><strong>main push</strong> → PROD環境に自動デプロイ</li>
+          <li>Cloud Functions / Firestoreルール含む</li>
+        </ul>
+      </div>
+      <div class="tech-card">
+        <h4>品質チェック</h4>
+        <ul>
+          <li><strong>pre-push hook</strong>: tsc -b (型チェック)</li>
+          <li><strong>PR時</strong>: version-check (バージョン・リリースノート検証)</li>
+          <li><strong>ESLint</strong>: コード品質</li>
+        </ul>
+      </div>
+      <div class="tech-card">
+        <h4>Git運用</h4>
+        <ul>
+          <li><strong>main ← develop ← feat/</strong> の3層構成</li>
+          <li>PRベースのマージ</li>
+          <li>featureブランチはマージ後に削除</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Footer ==================== -->
+  <footer>
+    <p>おかいもん — 個人開発 / 2025年～継続中</p>
+  </footer>
+
+</body>
+</html>
