@@ -138,6 +138,7 @@ groups/{groupId}                        # グループ情報
 
 ### デバイスロック（Touch ID / Face ID / Windows Hello）
 
+- 端末共有時の個人リスト保護や、紛失時の情報漏洩防止を目的としたロック機能
 - WebAuthn APIを使い、端末の生体認証（指紋・顔認証）でアプリをロック・解除
 - `signInWithPopup` を維持（`signInWithRedirect` はロック機能との競合で使用不可）
 
