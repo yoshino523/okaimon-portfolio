@@ -136,10 +136,10 @@ groups/{groupId}                        # グループ情報
 - `itemStats` サブコレクションにアイテムの使用回数を記録
 - 入力時に過去の使用頻度順でサジェスト表示
 
-### PINロック（生体認証）
+### デバイスロック（Touch ID / Face ID / Windows Hello）
 
-- Web Credentials APIを使った生体認証ロック
-- `signInWithPopup` を維持（`signInWithRedirect` はPINとの競合で使用不可）
+- WebAuthn APIを使い、端末の生体認証（指紋・顔認証）でアプリをロック・解除
+- `signInWithPopup` を維持（`signInWithRedirect` はロック機能との競合で使用不可）
 
 ## ディレクトリ構成
 
